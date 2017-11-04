@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="debug">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/platforms/android/build/intermediates/pre-dexed/debug/CordovaLib-6.3.0-debug_82ac7f0bd055003da71b84686121d609abc03040.jar!/" />
+      <root url="jar://$PROJECT_DIR$/platforms/android/build/intermediates/pre-dexed/debug/debug_326373e17349bffa7dc908961ccc79f4f679df51.jar!/" />
+      <root url="jar://$PROJECT_DIR$/platforms/android/build/intermediates/pre-dexed/debug/support-annotations-24.1.1_a1a3aad926d12a36b493bc3f3d2c5dc4917e4e9c.jar!/" />
+      <root url="jar://$PROJECT_DIR$/platforms/android/build/intermediates/pre-dexed/debug/com.android.support-support-v4-24.1.1_deb32f979072babb3e695ceea0f497c5a273f23b.jar!/" />
+      <root url="jar://$PROJECT_DIR$/platforms/android/build/intermediates/pre-dexed/debug/internal_impl-24.1.1_4c967462699e3e1bc2b61e366d7cd8f3dd796833.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
