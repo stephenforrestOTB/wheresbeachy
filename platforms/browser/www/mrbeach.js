@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	prepare_board();
+	prepare_board(1);
 	var i = 0;
 	thelog = {};
 
@@ -52,15 +52,22 @@ function prepare_board(level) {
 		clutter_images = ['Sandcastle1.png', 'Sandcastle2.png']
 		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
 
-		for (i = 0; i < levelmax; i ++){
+		for (i = 0; i < beach_positions[level].length; i ++){
+			var xpos = beach_positions[level][i]['x1']
+			var ypos = beach_positions[level][i]['y1']
 			if (i == mrbeach_num){
-				var imgname = "mrBeach.jpg";
+				var imgname = "binoculars.jpg";
+			  var mrbeach = {
+				    name: "MrBeach",
+				    x1: xpos,
+				    x2: xpos + mrbeach_size.width,
+				    y1: ypos,
+				    y2: ypos + mrbeach_size.height
+				}
 			}
 			else {
 				var imgname = clutter_images[Math.floor(Math.random() * clutter_images.length)];
 			}
-			var xpos = beach_positions[level][i]['x1']
-			var ypos = beach_positions[level][i]['y1']
 			//LIZ FUNCTION ( imgname, xpos, ypos ) --> put image on screen
 
 		}
