@@ -19,7 +19,15 @@ $(document).ready(function() {
 			// 	}
 			// 	console.log(thestring);
 			// }
-			i += 1;
+			//i += 1;
+    });
+	$('.image').click(function(e) {
+		console.log("CLICKED ON IMAGE");
+	    var offset = $(this).offset();
+		$("#test").show();
+	    $("#test").offset({left:e.pageX,top:e.pageY});
+	    imgX = (e.pageX - offset.left);
+	    imgY = (e.pageY - offset.top);
     });
 
   $('button').click(function(){
@@ -49,26 +57,30 @@ function whoGotClicked(who){
 
 function prepare_board(level) {
 		console.log("Board preparing");
-		clutter_images = ['Sandcastle1.png', 'Sandcastle2.png']
+		clutter_images = ['Sandcastle1.jpg', 'Sandcastle2.jpg']
 		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
 
 		for (i = 0; i < beach_positions[level].length; i ++){
 			var xpos = beach_positions[level][i]['x1']
 			var ypos = beach_positions[level][i]['y1']
 			if (i == mrbeach_num){
-				var imgname = "binoculars.jpg";
-			  var mrbeach = {
+				var imgname = "images/binoculars.jpg";
+			  mrbeach = {
 				    name: "MrBeach",
-				    x1: xpos,
-				    x2: xpos + mrbeach_size.width,
-				    y1: ypos,
-				    y2: ypos + mrbeach_size.height
+				    x1: xpos + $('#imgMap').offset().left,
+				    x2: xpos + 64 + + $('#imgMap').offset().left,
+				    y1: ypos + $('#imgMap').offset().top ,
+				    y2: ypos + 64 + + $('#imgMap').offset().top
 				}
 			}
 			else {
-				var imgname = clutter_images[Math.floor(Math.random() * clutter_images.length)];
+				var imgname = "images/"+clutter_images[Math.floor(Math.random() * clutter_images.length)];
 			}
+			add_image(imgname, xpos, ypos);
 			//LIZ FUNCTION ( imgname, xpos, ypos ) --> put image on screen
 
 		}
+}
+function add_image(name, x, y) {
+	document.getElementById("beach").insertAdjacentHTML('beforeend', '<IMG CLASS="image" STYLE="position:absolute; TOP:'+x+'px; LEFT:'+y+'px; WIDTH:64px; HEIGHT:64px" SRC="'+name+'">');
 }
