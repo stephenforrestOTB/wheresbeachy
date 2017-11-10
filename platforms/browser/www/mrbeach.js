@@ -46,6 +46,22 @@ function whoGotClicked(who){
 		}
 	}
 }
-function prepare_board() {
-		console.log("Board prepared");
+
+function prepare_board(level) {
+		console.log("Board preparing");
+		clutter_images = ['Sandcastle1.png', 'Sandcastle2.png']
+		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
+
+		for (i = 0; i < levelmax; i ++){
+			if (i == mrbeach_num){
+				var imgname = "mrBeach.jpg";
+			}
+			else {
+				var imgname = clutter_images[Math.floor(Math.random() * clutter_images.length)];
+			}
+			var xpos = beach_positions[level][i]['x1']
+			var ypos = beach_positions[level][i]['y1']
+			//LIZ FUNCTION ( imgname, xpos, ypos ) --> put image on screen
+
+		}
 }
