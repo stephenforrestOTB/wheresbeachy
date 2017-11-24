@@ -17,7 +17,9 @@
     <h3>Find these characters and objects on the map.</h3>
     <img id="imgCharList" src="images/waldo-f.jpg" alt="Wheres Waldo Game, Characters.">
     </p>
-    <img id="imgMap" src="images/beach.png" alt=" Wheres Mr Beach.">
+    <canvas id="myCanvas" width="200" height="100"><img id="imgMap" src="images/beach.png" alt=" Wheres Mr Beach."></canvas>
+		<p>X:<span id="x"></span></p>
+    <p>Y:<span id="y"></span></p>
 
 	<div id="test">
         <div id="btnBox">
@@ -32,6 +34,14 @@
 <!-- Script tags only below here -->
 <script type="text/javascript" src ="lib/jquery-3.1.1.js"></script>
 <script type="text/javascript" src ="mrbeach-data.js"></script>
-<script type="text/javascript" src = "mrbeach.js"></script>
+<script type="text/javascript" src ="mrbeach.js"></script>
+<script type="text/javascript" src ="pos_finder.js"></script>
+<script type="text/javascript">
+<!--
+var myImg = document.getElementById("imgMap");
+myImg.onmousedown = GetCoordinates;
+myImg =
+//-->
+</script>
 </body>
 </html>
