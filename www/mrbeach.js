@@ -5,7 +5,7 @@ $(document).ready(function() {
 
 	$('#test').hide();
 
-	$('#imgMap').click(function(e) {
+	$('myCanvas').click(function(e) {
 	    var offset = $(this).offset();
 		$("#test").show();
 	    $("#test").offset({left:e.pageX,top:e.pageY});
@@ -72,3 +72,12 @@ function prepare_board(level) {
 
 		}
 }
+var context = document.getElementById("myCanvas").getContext("2d");
+
+var firstPin = new Image();
+firstPin.src = "images/Sandcastle1.png";
+
+firstPin.onload = function() {
+		context.drawImage(firstPin, 1892, 1528, 256, 288);
+		 firstPin == myMove();
+};

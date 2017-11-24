@@ -3,6 +3,8 @@ body {
 	background-color: rgb(220, 220, 220);
 	color: rgb(45, 45, 55);
 	/*font-family: "Arial", "Monserrat", "Avenir";*/
+ text-align: center;
+ background: #f2f6f8;
 }
 h1 {
 	font-size: 50px;
@@ -14,7 +16,6 @@ h3 {
 	padding: 2px;
 
 }
-
 
 #imgMap {
 	border: 5px dashed red;
@@ -36,4 +37,14 @@ h3 {
 
 button {
 	padding: 2px;
+}
+
+.myCanvas{
+    position:relative;
+    z-index:20;
+		border:1px solid #d3d3d3;
+    background-color: #F0F8FF;
+		background-image: url("images/beach.jpg");
+		background-size: 3840px 1944px;
+		background-repeat: no-repeat;
 }

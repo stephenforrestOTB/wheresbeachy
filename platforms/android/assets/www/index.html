@@ -17,31 +17,27 @@
     <h3>Find these characters and objects on the map.</h3>
     <img id="imgCharList" src="images/waldo-f.jpg" alt="Wheres Waldo Game, Characters.">
     </p>
-    <canvas id="myCanvas" width="200" height="100"><img id="imgMap" src="images/beach.png" alt=" Wheres Mr Beach."></canvas>
+		<canvas id="myCanvas" class="myCanvas" width="3840px" height="1944px" style="border:3px solid #000000;">
+</canvas>
 		<p>X:<span id="x"></span></p>
     <p>Y:<span id="y"></span></p>
 
-	<div id="test">
+	   <div id="test">
         <div id="btnBox">
             Who did you find?<br>
             <button id="btnMrBeach" type = "button" class="btn btn-default">MrBeach</button>
 						<button id="btnCancel" type = "button" class="btn btn-warning">Cancel</button>
         </div>
      </div>
-
-
 </div>
 <!-- Script tags only below here -->
 <script type="text/javascript" src ="lib/jquery-3.1.1.js"></script>
 <script type="text/javascript" src ="mrbeach-data.js"></script>
 <script type="text/javascript" src ="mrbeach.js"></script>
 <script type="text/javascript" src ="pos_finder.js"></script>
-<script type="text/javascript">
-<!--
-var myImg = document.getElementById("imgMap");
+<script>
+var myImg = document.getElementById("myCanvas");
 myImg.onmousedown = GetCoordinates;
-myImg =
-//-->
 </script>
 </body>
 </html>
