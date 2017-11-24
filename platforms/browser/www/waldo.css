@@ -19,7 +19,7 @@ h3 {
 #imgMap {
 	border: 5px dashed red;
 	padding: 2px;
-
+	position: relative;
 }
 
 #imgCharList {

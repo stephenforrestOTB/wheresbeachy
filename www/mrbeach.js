@@ -7,27 +7,32 @@ $(document).ready(function() {
 
 	$('#imgMap').click(function(e) {
 	    var offset = $(this).offset();
-		$("#test").show();
+			$("#test").show();
 	    $("#test").offset({left:e.pageX,top:e.pageY});
 	    imgX = (e.pageX - offset.left);
 	    imgY = (e.pageY - offset.top);
-			thelog[i] = {x1 : imgX.toFixed(0), y1: imgY.toFixed(0)}
-			// var thestring = ''
-	    // if (i >= 15) {
-			// 	for (i = 0; i < 15; i++){
-			// 		thestring += i+':{ x1:'+thelog[i]['x1']+',y1: '+thelog[i]['y1']+'},\n';
-			// 	}
-			// 	console.log(thestring);
-			// }
-			//i += 1;
+			xpos = imgX.toFixed(0);
+			ypos = imgY.toFixed(0);
+			xper = (xpos / this.width)*100;
+			yper = (ypos / this.height)*100;
+			thelog[i] = { x : xper, y: yper };
+			var thestring = '';
+	    if (i >= 5) {
+				for (i = 0; i < 5; i++){
+					thestring += '{ x:'+thelog[i].x+',y: '+thelog[i].y+'},\n';
+				}
+				console.log(thestring);
+			}
+			i += 1;
     });
 	$('.image').click(function(e) {
-		console.log("CLICKED ON IMAGE");
+			console.log("CLICKED ON IMAGE");
 	    var offset = $(this).offset();
-		$("#test").show();
+			$("#test").show();
 	    $("#test").offset({left:e.pageX,top:e.pageY});
 	    imgX = (e.pageX - offset.left);
 	    imgY = (e.pageY - offset.top);
+			//console.log("x: "+imgX+" y: "+imgY);
     });
 
   $('button').click(function(){
@@ -57,30 +62,35 @@ function whoGotClicked(who){
 
 function prepare_board(level) {
 		console.log("Board preparing");
-		clutter_images = ['Sandcastle1.jpg', 'Sandcastle2.jpg']
+		clutter_images = ['Sandcastle1.png', 'Sandcastle2.jpg']
 		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
 
 		for (i = 0; i < beach_positions[level].length; i ++){
-			var xpos = beach_positions[level][i]['x1']
-			var ypos = beach_positions[level][i]['y1']
+			var xpos = beach_positions[level][i]['x'];
+			var ypos = beach_positions[level][i]['y'];
 			if (i == mrbeach_num){
 				var imgname = "images/binoculars.jpg";
+				var width = (mrbeach_size.width/ $('imgMap').width) * 100;
+				var height = (mrbeach_size.height/ $('imgMap').height) * 100;
 			  mrbeach = {
 				    name: "MrBeach",
-				    x1: xpos + $('#imgMap').offset().left,
-				    x2: xpos + 64 + + $('#imgMap').offset().left,
-				    y1: ypos + $('#imgMap').offset().top ,
-				    y2: ypos + 64 + + $('#imgMap').offset().top
+				    x1: xpos,
+				    x2: xpos + width,
+				    y1: ypos,
+				    y2: ypos + height
 				}
+				console.log(mrbeach)
 			}
 			else {
 				var imgname = "images/"+clutter_images[Math.floor(Math.random() * clutter_images.length)];
+				var width = (sandcastle1_size.width / $('imgMap').width) * 100 ;
+				//var height = (sandcastle1_size.height / $('imgMap').height) * 100;
 			}
-			add_image(imgname, xpos, ypos);
+			add_image(imgname, xpos, ypos, width);
 			//LIZ FUNCTION ( imgname, xpos, ypos ) --> put image on screen
 
 		}
 }
-function add_image(name, x, y) {
-	document.getElementById("beach").insertAdjacentHTML('beforeend', '<IMG CLASS="image" STYLE="position:absolute; TOP:'+x+'px; LEFT:'+y+'px; WIDTH:64px; HEIGHT:64px" SRC="'+name+'">');
+function add_image(name, x, y, width) {
+	document.getElementById("beach").insertAdjacentHTML('beforeEnd', '<IMG CLASS="image" STYLE="position:absolute; TOP:'+y+'%; LEFT:'+x+'%; WIDTH:'+width+'%;" SRC="'+name+'">');
 }
