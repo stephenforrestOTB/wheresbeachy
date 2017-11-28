@@ -5,34 +5,21 @@ $(document).ready(function() {
 
 	$('#test').hide();
 
-	$('#imgMap').click(function(e) {
+	$('#myCanvas').click(function(e) {
 	    var offset = $(this).offset();
 			$("#test").show();
 	    $("#test").offset({left:e.pageX,top:e.pageY});
 	    imgX = (e.pageX - offset.left);
 	    imgY = (e.pageY - offset.top);
-			xpos = imgX.toFixed(0);
-			ypos = imgY.toFixed(0);
-			xper = (xpos / this.width)*100;
-			yper = (ypos / this.height)*100;
-			thelog[i] = { x : xper, y: yper };
-			var thestring = '';
-	    if (i >= 5) {
-				for (i = 0; i < 5; i++){
-					thestring += '{ x:'+thelog[i].x+',y: '+thelog[i].y+'},\n';
-				}
-				console.log(thestring);
-			}
+			thelog[i] = {x1 : imgX.toFixed(0), y1: imgY.toFixed(0)}
+			// var thestring = ''
+	    // if (i >= 15) {
+			// 	for (i = 0; i < 15; i++){
+			// 		thestring += i+':{ x1:'+thelog[i]['x1']+',y1: '+thelog[i]['y1']+'},\n';
+			// 	}
+			// 	console.log(thestring);
+			// }
 			i += 1;
-    });
-	$('.image').click(function(e) {
-			console.log("CLICKED ON IMAGE");
-	    var offset = $(this).offset();
-			$("#test").show();
-	    $("#test").offset({left:e.pageX,top:e.pageY});
-	    imgX = (e.pageX - offset.left);
-	    imgY = (e.pageY - offset.top);
-			//console.log("x: "+imgX+" y: "+imgY);
     });
 
   $('button').click(function(){
@@ -66,12 +53,12 @@ function prepare_board(level) {
 		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
 
 		for (i = 0; i < beach_positions[level].length; i ++){
-			var xpos = beach_positions[level][i]['x'];
-			var ypos = beach_positions[level][i]['y'];
+			var xpos = beach_positions[level][i]['x1'];
+			var ypos = beach_positions[level][i]['y1'];
 			if (i == mrbeach_num){
-				var imgname = "images/binoculars.jpg";
-				var width = (mrbeach_size.width/ $('imgMap').width) * 100;
-				var height = (mrbeach_size.height/ $('imgMap').height) * 100;
+				var imgname = "binoculars.jpg";
+				var height = mrbeach_size.height;
+				var width = mrbeach_size.width;
 			  mrbeach = {
 				    name: "MrBeach",
 				    x1: xpos,
@@ -79,18 +66,30 @@ function prepare_board(level) {
 				    y1: ypos,
 				    y2: ypos + height
 				}
-				console.log(mrbeach)
 			}
 			else {
-				var imgname = "images/"+clutter_images[Math.floor(Math.random() * clutter_images.length)];
-				var width = (sandcastle1_size.width / $('imgMap').width) * 100 ;
-				//var height = (sandcastle1_size.height / $('imgMap').height) * 100;
+				var imgname = clutter_images[Math.floor(Math.random() * clutter_images.length)];
+				var height = sandcastle1_size.height;
+				var width = sandcastle1_size.width;
 			}
-			add_image(imgname, xpos, ypos, width);
-			//LIZ FUNCTION ( imgname, xpos, ypos ) --> put image on screen
+			lizfunction(imgname, xpos, ypos, width, height)
 
 		}
 }
-function add_image(name, x, y, width) {
-	document.getElementById("beach").insertAdjacentHTML('beforeEnd', '<IMG CLASS="image" STYLE="position:absolute; TOP:'+y+'%; LEFT:'+x+'%; WIDTH:'+width+'%;" SRC="'+name+'">');
+var context = document.getElementById("myCanvas").getContext("2d");
+
+//
+// firstPin.src = "images/Sandcastle1.png";
+//
+// firstPin.onload = function() {
+// 		context.drawImage(firstPin, 1892, 1528, 256, 288);
+// 		//firstPin == myMove();
+// };
+
+function lizfunction(imgname, xpos, ypos, width, height){
+	var image = new Image();
+	image.src = 'images/'+imgname;
+	image.onload = function(){
+		context.drawImage(image, xpos, ypos);
+	}
 }
