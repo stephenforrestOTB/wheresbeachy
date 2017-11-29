@@ -11,16 +11,16 @@ $(document).ready(function() {
 	    $("#test").offset({left:e.pageX,top:e.pageY});
 	    imgX = (e.pageX - offset.left);
 	    imgY = (e.pageY - offset.top);
-			thelog[i] = {x1 : imgX.toFixed(0), y1: imgY.toFixed(0)}
-			// var thestring = ''
-	    // if (i >= 15) {
-			// 	for (i = 0; i < 15; i++){
-			// 		thestring += i+':{ x1:'+thelog[i]['x1']+',y1: '+thelog[i]['y1']+'},\n';
-			// 	}
-			// 	console.log(thestring);
-			// }
-			i += 1;
-    });
+		// 	thelog[i] = {x1 : imgX.toFixed(0), y1: imgY.toFixed(0)}
+		// 	var thestring = ''
+	  //   if (i >= 500) {
+		// 		for (i = 0; i < 500; i++){
+		// 			thestring += '{ x1:'+thelog[i]['x1']+',y1: '+thelog[i]['y1']+'},\n';
+		// 		}
+		// 		console.log(thestring);
+		// 	}
+		// 	i += 1;
+	});
 
   $('button').click(function(){
         $('#test').hide(500);
@@ -33,6 +33,7 @@ $(document).ready(function() {
 function whoGotClicked(who){
 	var selected = {};
 	who === "btnMrBeach" ? selected = mrbeach :
+	who === "btnBinoculars" ? selected = binoculars :
 	selected = cancel;
     //console.log("who got clicked?  " + selected.name);
 	if (selected.name === "Cancel") {
@@ -49,18 +50,18 @@ function whoGotClicked(who){
 
 function prepare_board(level) {
 		console.log("Board preparing");
-		clutter_images = ['Sandcastle1.png', 'Sandcastle2.jpg']
+		clutter_images = ['Sandcastle1.png', 'Sandcastle2.png'];
 		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
 
 		for (i = 0; i < beach_positions[level].length; i ++){
 			var xpos = beach_positions[level][i]['x1'];
 			var ypos = beach_positions[level][i]['y1'];
 			if (i == mrbeach_num){
-				var imgname = "binoculars.jpg";
+				var imgname = "binoculars.png";
 				var height = mrbeach_size.height;
 				var width = mrbeach_size.width;
-			  mrbeach = {
-				    name: "MrBeach",
+			  binoculars = {
+				    name: "The Beach's Binoculars",
 				    x1: xpos,
 				    x2: xpos + width,
 				    y1: ypos,
