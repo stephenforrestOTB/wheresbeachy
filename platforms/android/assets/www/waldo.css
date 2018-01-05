@@ -48,3 +48,8 @@ button {
 		background-size: 3840px 1944px;
 		background-repeat: no-repeat;
 }
+
+.sandcastle1{
+	background-image: url("images/Sandcastle1.png");
+  position: absolute;
+}
