@@ -5,22 +5,22 @@
 
 		$('#test').hide();
 
-		$('myCanvas').click(function(e) {
-		    var offset = $(this).offset();
+	$('#myCanvas').click(function(e) {
+	    var offset = $(this).offset();
 			$("#test").show();
-		    $("#test").offset({left:e.pageX,top:e.pageY});
-		    imgX = (e.pageX - offset.left);
-		    imgY = (e.pageY - offset.top);
-				thelog[i] = {x1 : imgX.toFixed(0), y1: imgY.toFixed(0)}
-				// var thestring = ''
-		    // if (i >= 15) {
-				// 	for (i = 0; i < 15; i++){
-				// 		thestring += i+':{ x1:'+thelog[i]['x1']+',y1: '+thelog[i]['y1']+'},\n';
-				// 	}
-				// 	console.log(thestring);
-				// }
-				i += 1;
-	    });
+	    $("#test").offset({left:e.pageX,top:e.pageY});
+	    imgX = (e.pageX - offset.left);
+	    imgY = (e.pageY - offset.top);
+			thelog[i] = {x1 : imgX.toFixed(0), y1: imgY.toFixed(0)}
+			// var thestring = ''
+	    // if (i >= 15) {
+			// 	for (i = 0; i < 15; i++){
+			// 		thestring += i+':{ x1:'+thelog[i]['x1']+',y1: '+thelog[i]['y1']+'},\n';
+			// 	}
+			// 	console.log(thestring);
+			// }
+			i += 1;
+    });
 
 	  $('button').click(function(){
 	        $('#test').hide(500);
@@ -47,61 +47,49 @@
 		}
 	}
 
-	function prepare_board(level) {
-			console.log("Board preparing");
-			clutter_images = ['Sandcastle1.png', 'Sandcastle2.png']
-			mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
+function prepare_board(level) {
+		console.log("Board preparing");
+		clutter_images = ['Sandcastle1.png', 'Sandcastle2.jpg']
+		mrbeach_num = Math.floor(Math.random() * beach_positions[level].length);
 
-			for (i = 0; i < beach_positions[level].length; i ++){
-				var xpos = beach_positions[level][i]['x1']
-				var ypos = beach_positions[level][i]['y1']
-				if (i == mrbeach_num){
-					var imgname = "binoculars.jpg";
-				  var mrbeach = {
-					    name: "MrBeach",
-					    x1: xpos,
-					    x2: xpos + mrbeach_size.width,
-					    y1: ypos,
-					    y2: ypos + mrbeach_size.height
-					}
+		for (i = 0; i < beach_positions[level].length; i ++){
+			var xpos = beach_positions[level][i]['x1'];
+			var ypos = beach_positions[level][i]['y1'];
+			if (i == mrbeach_num){
+				var imgname = "binoculars.jpg";
+				var height = mrbeach_size.height;
+				var width = mrbeach_size.width;
+			  mrbeach = {
+				    name: "MrBeach",
+				    x1: xpos,
+				    x2: xpos + width,
+				    y1: ypos,
+				    y2: ypos + height
 				}
-				else {
-					var imgname = clutter_images[Math.floor(Math.random() * clutter_images.length)];
-				}
-				//LIZ FUNCTION ( imgname, xpos, ypos ) --> put image on screen
-
 			}
-	}
+			else {
+				var imgname = clutter_images[Math.floor(Math.random() * clutter_images.length)];
+				var height = sandcastle1_size.height;
+				var width = sandcastle1_size.width;
+			}
+			lizfunction(imgname, xpos, ypos, width, height)
 
-//  var initialPosition = {
-// 	 x: 1892,
-// 	 y: 1528
-//  };
-// 	var imagelocation = {
-// 		x: 1892,
-// 		y: 1528
-// 	};
-// 	var context = document.getElementById("myCanvas");
-// 	var firstPin = new Image();
-// 	firstPin.src = "images/Sandcastle1.png";
-// 	firstPin.onload = function() {
-// 			render();
-// 	};
+		}
+}
+var context = document.getElementById("myCanvas").getContext("2d");
+
 //
-// 	function requestNewLocation() {
-// 		if (imagelocation.x >= initialPosition.x - 200) {
-// 		      imagelocation.x -= 20;
-// 	  }
-// 	}
+// firstPin.src = "images/Sandcastle1.png";
 //
-// 	function render() {
-// 		var c = context.getContext("2d");
-// 		c.clearRect(0, 0, context.width, context.height);
-// 		c.drawImage(firstPin, imagelocation.x, imagelocation.y, 256, 288);
-// 	}
-// context.addEventListener('click', function(event) {
-// 	setInterval(function () {
-// 		requestNewLocation();
-// 		render();
-// 	}, 100);
-// }, false);
+// firstPin.onload = function() {
+// 		context.drawImage(firstPin, 1892, 1528, 256, 288);
+// 		//firstPin == myMove();
+// };
+
+function lizfunction(imgname, xpos, ypos, width, height){
+	var image = new Image();
+	image.src = 'images/'+imgname;
+	image.onload = function(){
+		context.drawImage(image, xpos, ypos);
+	}
+}
