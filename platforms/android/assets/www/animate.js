@@ -1,19 +1,3 @@
-var firstPin = {
-  x: 1892,
-  y: 1528,
-  width: 512,
-  height: 516,
-  i: 1892
-}
-
-var SecondPin = {
-  x: 2372,
-  y: 1212,
-  width: 256,
-  height: 288,
-  i: 2372
-}
-
  var context = document.getElementById("myCanvas");
  var firstPin = new Image();
  var secondPin = new Image();
@@ -36,25 +20,31 @@ var SecondPin = {
    var c = context.getContext("2d");
    c.clearRect(0, 0, context.width, context.height);
    c.drawImage(image, image.x, image.y, image.width, image.height);
- }
+   c.shadowOffsetX = 2;
+   c.shadowOffsetY = 2;
+   c.shadowBlur = 2;
+   c.shadowColour = 'rgba(0, 0, 0, 0.5)';
+ };
 
-  function animate(image){
+  function animate(){
     context.addEventListener('click', function(event) {
       setInterval(function () {
         requestNewLocation(image);
         render(image);
       }, 100);
      }, false);
-   }
+   };
 
-   function whatClicked(image) {
-    posX = document.getElementById("x");
-    posY = document.getElementById("Y");
-    // if (posX >= image.x && posX =< image.x + image.width ) {
-    //   if (posY >= image.y && posY =< image.y + image.height) {
-    //         image == animate(this.image);
-    console.log(posX)
-      }
-    }
-
-   }
+   // function whatClicked() {
+   //  var posX = document.getElementById("x");
+   //  var posY = document.getElementById("Y");
+   //  var image1 = document.getElementById(firstPin);
+   //  var image2 = document.getElementById(secondPin);
+   //
+   //  if (posX >= image.x && posX =< image.x + image.width ) {
+   //    if (posY >= image.y && posY =< image.y + image.height) {
+   //          image == animate(this.image);
+   //    }
+   //  }
+   //
+   // }
