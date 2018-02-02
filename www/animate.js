@@ -1,62 +1,51 @@
- var context = document.getElementById("myCanvas");
- var firstPin = new Image(
-   x: 1892,
-   y: 1528,
-   width: 512,
-   height: 516,
-   i: 1892
- );
- var secondPin = new Image(
-   x: 2372,
-   y: 1212,
-   width: 256,
-   height: 288,
-   i: 2372
- );
+
+ firstPin = new Image(512, 516);
+ secondPin = new Image(256, 288);
  firstPin.src = "images/Sandcastle1.png";
  secondPin.src = "images/Sandcastle1.png";
+
  firstPin.onload = function() {
-     render(pin1);
+     render(firstPin, 2080, 1416);
  };
+
+ firstPin.onclick = function() {
+     myMove(firstPin, 2080);
+ };
+
  secondPin.onload = function() {
-     render(pin2);
+     render(secondPin, 2372, 1212);
  };
 
- function requestNewLocation(image) {
-   if (image.x >= image.i - 200) {
-         image.x -= 20;
-   }
- };
-
- function render(image) {
+ function render(image, x, y) {
+   var context=document.getElementById("myCanvas");
    var c = context.getContext("2d");
    c.clearRect(0, 0, context.width, context.height);
-   c.drawImage(image, image.x, image.y, image.width, image.height);
-   c.shadowOffsetX = 2;
-   c.shadowOffsetY = 2;
-   c.shadowBlur = 2;
-   c.shadowColour = 'rgba(0, 0, 0, 0.5)';
+   c.drawImage(image, x, y, image.width, image.height);
  };
 
-  function animate(){
-    context.addEventListener('click', function(event) {
-      setInterval(function () {
-        requestNewLocation(image);
-        render(image);
-      }, 100);
-     }, false);
-   };
+ function wait(ms) {
+  var d = new Date();
+  var d2 = null;
+  do { d2 = new Date(); }
+  while(d2-d < ms);
+  }
 
-   // function whatClicked() {
-   //  var posX = document.getElementById("x");
-   //  var posY = document.getElementById("Y");
-   //  var image1 = document.getElementById(firstPin);
-   //  var image2 = document.getElementById(secondPin);
-   //
-   //  if (posX >= image.x && posX =< image.x + image.width ) {
-   //    if (posY >= image.y && posY =< image.y + image.height) {
-   //          image == animate(this.image);
-   //    }
-   //  }
-   //
-   // }
+ function myMove(image, x) {
+  var image = image;
+  var pos = x;
+  var id = setInterval(frame, 5);
+  function frame() {
+      if (pos == x + 200) {
+          wait(8000);
+          if (pos == x - 200) {
+            clearInterval(id)
+          } else {
+              pos--;
+              image = pos - 'px';
+          }
+      } else {
+          pos++;
+          image = pos + 'px';
+      }
+  }
+}
