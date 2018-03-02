@@ -3,7 +3,7 @@
 <head>
 	<title>Where's Mr Beach?</title>
     <link rel="stylesheet" type="text/css" href="lib/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="waldo.css">
+	<link rel="stylesheet" type="text/css" href="mrbeach.css">
     <script src="https://use.fontawesome.com/ca6e360dc0.js"></script>
 </head>
 <body>
@@ -15,9 +15,9 @@
         </div>
     <p>
     <h3>Find these characters and objects on the map.</h3>
-    <img id="imgCharList" src="images/waldo-f.jpg" alt="Wheres Waldo Game, Characters.">
+    <img id="imgCharList" src="images/waldo-f.jpg"/>
     </p>
-		<canvas id="myCanvas" class="myCanvas" width="3840px" height="1944px" style="border:3px solid #000000;">
+		<canvas id="beach" class="beach" width="3840px" height="1944px" style="border:3px solid #000000;">
 </canvas>
 		<p>X:<span id="x"></span></p>
     <p>Y:<span id="y"></span></p>
@@ -25,8 +25,11 @@
 	   <div id="test" style="z-index:999">
         <div id="btnBox">
             Who did you find?<br>
-            <button id="btnMrBeach" type = "button" class="btn btn-default">The Beach</button>
 						<button id="btnBinoculars" type = "button" class="btn btn-default">Binoculars</button>
+						<button id="btnShell1" type = "button" class="btn btn-default">Shell 1</button>
+						<button id="btnShell2" type = "button" class="btn btn-default">Shell 2</button>
+						<button id="btnShell3" type = "button" class="btn btn-default">Shell 3</button>
+
 						<button id="btnCancel" type = "button" class="btn btn-warning">Cancel</button>
         </div>
      </div>
@@ -34,10 +37,11 @@
 <!-- Script tags only below here -->
 <script type="text/javascript" src ="lib/jquery-3.1.1.js"></script>
 <script type="text/javascript" src ="mrbeach-data.js"></script>
+<script type="text/javascript" src ="shuffle.js"></script>
 <script type="text/javascript" src ="mrbeach.js"></script>
 <script type="text/javascript" src ="pos_finder.js"></script>
 <script>
-var myImg = document.getElementById("myCanvas");
+var myImg = document.getElementById("beach");
 myImg.onmousedown = GetCoordinates;
 </script>
 </body>
